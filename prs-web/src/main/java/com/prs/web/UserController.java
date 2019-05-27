@@ -93,8 +93,8 @@ public class UserController {
 	}
 	
 	//find user by username and password
-		@PostMapping("/login")
-		public JsonResponse getByUserNameAndPassword(@RequestBody User u) {
+		@PostMapping("/authenticate")
+		public JsonResponse getAuthenticate(@RequestBody User u) {
 			JsonResponse jr = null;
 			try {
 				Optional<User> user = userRepo.findByUserNameAndPassword(u.getUserName(), u.getPassword());

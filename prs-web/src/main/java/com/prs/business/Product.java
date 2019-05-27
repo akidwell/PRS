@@ -1,5 +1,4 @@
 package com.prs.business;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -47,6 +46,7 @@ import javax.persistence.ManyToOne;
 		this.unit = unit;
 		this.photoPath = photoPath;
 	}
+
 
 	public int getId() {
 		return id;

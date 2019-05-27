@@ -1,6 +1,7 @@
 package com.prs.business;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +24,7 @@ public class PurchaseRequest {
 	private String deliveryMode;
 	private String status;
 	private double total;
-	private LocalDate submittedDate;
+	private LocalDateTime submittedDate;
 	private String reasonForRejection;
 	
 	public PurchaseRequest() {
@@ -31,9 +32,22 @@ public class PurchaseRequest {
 	}
 	
 	public PurchaseRequest(int id, User user, String justification, LocalDate dateNeeded, String deliveryMode,
-			String status, double total, LocalDate submittedDate, String reasonForRejection) {
+			String status, double total, LocalDateTime submittedDate, String reasonForRejection) {
 		super();
 		this.id = id;
+		this.user = user;
+		this.justification = justification;
+		this.dateNeeded = dateNeeded;
+		this.deliveryMode = deliveryMode;
+		this.status = status;
+		this.total = total;
+		this.submittedDate = submittedDate;
+		this.reasonForRejection = reasonForRejection;
+	}
+	
+	public PurchaseRequest(User user, String justification, LocalDate dateNeeded, String deliveryMode,
+			String status, double total, LocalDateTime submittedDate, String reasonForRejection) {
+		super();
 		this.user = user;
 		this.justification = justification;
 		this.dateNeeded = dateNeeded;
@@ -100,11 +114,11 @@ public class PurchaseRequest {
 		this.total = total;
 	}
 
-	public LocalDate getSubmittedDate() {
+	public LocalDateTime getSubmittedDate() {
 		return submittedDate;
 	}
 
-	public void setSubmittedDate(LocalDate submittedDate) {
+	public void setSubmittedDate(LocalDateTime submittedDate) {
 		this.submittedDate = submittedDate;
 	}
 

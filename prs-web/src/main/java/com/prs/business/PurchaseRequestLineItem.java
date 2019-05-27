@@ -33,6 +33,13 @@ public class PurchaseRequestLineItem {
 		this.product = product;
 		this.quantity = quantity;
 	}
+	
+	public PurchaseRequestLineItem(PurchaseRequest purchaseRequest, Product product, int quantity) {
+		super();
+		this.purchaseRequest = purchaseRequest;
+		this.product = product;
+		this.quantity = quantity;
+	}
 
 	public int getId() {
 		return id;
