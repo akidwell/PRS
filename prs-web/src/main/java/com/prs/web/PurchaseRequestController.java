@@ -20,7 +20,7 @@ import com.prs.business.User;
 import com.prs.db.PurchaseRequestRepository;
 
 @RestController
-@RequestMapping("/purchaserequest")
+@RequestMapping("/purchase-requests")
 public class PurchaseRequestController {
 
 	@Autowired

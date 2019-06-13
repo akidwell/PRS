@@ -42,7 +42,7 @@ public class PurchaseRequestTests {
 		// create new user
 		Iterable<User> users = userRepo.findAll();
 		User u = users.iterator().next();
-		PurchaseRequest pr = new PurchaseRequest(u,"pn",LocalDate.of(2019,06, 01), "pickup", "new", 5.99, LocalDateTime.now(),"zzz");
+		PurchaseRequest pr = new PurchaseRequest(u,"pn","desc", LocalDate.of(2019,06, 01), "pickup", "new", 5.99, LocalDateTime.now(),"zzz");
 		// save new pr
 		assertNotNull(prRepo.save(pr));
 		// assert that is correct

@@ -19,6 +19,7 @@ public class PurchaseRequest {
 	@ManyToOne
 	@JoinColumn(name = "userID")
 	private User user;
+	private String description;
 	private String justification;
 	private LocalDate dateNeeded;
 	private String deliveryMode;
@@ -31,11 +32,12 @@ public class PurchaseRequest {
 		super();
 	}
 	
-	public PurchaseRequest(int id, User user, String justification, LocalDate dateNeeded, String deliveryMode,
+	public PurchaseRequest(int id, User user, String description, String justification, LocalDate dateNeeded, String deliveryMode,
 			String status, double total, LocalDateTime submittedDate, String reasonForRejection) {
 		super();
 		this.id = id;
 		this.user = user;
+		this.description= description;
 		this.justification = justification;
 		this.dateNeeded = dateNeeded;
 		this.deliveryMode = deliveryMode;
@@ -45,10 +47,11 @@ public class PurchaseRequest {
 		this.reasonForRejection = reasonForRejection;
 	}
 	
-	public PurchaseRequest(User user, String justification, LocalDate dateNeeded, String deliveryMode,
+	public PurchaseRequest(User user, String description, String justification, LocalDate dateNeeded, String deliveryMode,
 			String status, double total, LocalDateTime submittedDate, String reasonForRejection) {
 		super();
 		this.user = user;
+		this.description= description;
 		this.justification = justification;
 		this.dateNeeded = dateNeeded;
 		this.deliveryMode = deliveryMode;
@@ -73,6 +76,15 @@ public class PurchaseRequest {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
 
 	public String getJustification() {
 		return justification;
@@ -132,11 +144,13 @@ public class PurchaseRequest {
 
 	@Override
 	public String toString() {
-		return "PurchaseRequest: ID=" + id + ", userID=" + user + ", justification=" + justification + ", dateNeeded="
-				+ dateNeeded + ", deliveryMode=" + deliveryMode + ", status=" + status + ", total=" + total
-				+ ", submittedDate=" + submittedDate + ", reasonForRejection=" + reasonForRejection;
+		return "PurchaseRequest [id=" + id + ", user=" + user + ", description=" + description + ", justification="
+				+ justification + ", dateNeeded=" + dateNeeded + ", deliveryMode=" + deliveryMode + ", status=" + status
+				+ ", total=" + total + ", submittedDate=" + submittedDate + ", reasonForRejection=" + reasonForRejection
+				+ "]";
 	}
 
+	
 	
 	
 }
