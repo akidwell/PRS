@@ -41,8 +41,15 @@
 
 
 <div class="form-group row">
-  <div *ngIf="pr.reasonForRejection == null || pr.reasonForRejection == ''"><button (click)='approve()' class='btn btn-primary'>Approve</button></div>
-  <div *ngIf="pr.reasonForRejection != null || pr.reasonForRejection !=''"><button (click)='reject()' class='btn btn-primary'>Reject</button></div>
-  <input [(ngModel)]='pr.reasonForRejection' name='reasonForRejection' type="text" class="form-control col-sm-6"
-    placeholder="Reason for Rejection">
-</div>
+    <div *ngIf="pr.reasonForRejection ==''" class="col-1"><button (click)='approve()' 
+      class='btn btn-success' >Approve</button></div>
+  
+    <div *ngIf="pr.reasonForRejection !=''" class="col-1"><button (click)='reject()' 
+      class='btn btn-danger'>Reject</button></div>
+  
+    <input [(ngModel)]='pr.reasonForRejection' name='reasonForRejection' type="text" class="form-control col-sm-3"
+      placeholder="Reason for Rejection">
+  </div>
+  
+  
+  

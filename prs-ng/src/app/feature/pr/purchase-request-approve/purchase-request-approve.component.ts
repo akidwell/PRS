@@ -31,6 +31,7 @@ export class PurchaseRequestApproveComponent implements OnInit {
     this.prSvc.get(this.prId).subscribe(jresp =>{
       this.jr = jresp;
       this.pr = this.jr.data as PurchaseRequest;
+      this.pr.reasonForRejection="";
     });
 
   this.prliService.linesForPr(this.prId).subscribe(
