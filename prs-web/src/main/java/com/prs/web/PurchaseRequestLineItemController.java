@@ -3,6 +3,7 @@ package com.prs.web;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,9 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.prs.business.JsonResponse;
 import com.prs.business.PurchaseRequest;
 import com.prs.business.PurchaseRequestLineItem;
+import com.prs.business.Vendor;
 import com.prs.db.PurchaseRequestLineItemRepository;
 import com.prs.db.PurchaseRequestRepository;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/purchaserequestlineitem")
 public class PurchaseRequestLineItemController {
@@ -86,20 +88,19 @@ public class PurchaseRequestLineItemController {
 		return jr;
 	}
 
-	@DeleteMapping("/")
-	public JsonResponse deletePurchaseRequestLineItem(@RequestBody PurchaseRequestLineItem prli) {
+	
+	
+	@DeleteMapping("/{id}")
+	public JsonResponse delete(@PathVariable int id) {
 		JsonResponse jr = null;
-		// NOTE: May need to enhance exception handling if more than one exception type
-		// needs caught
 		try {
-			if (prliRepo.existsById(prli.getId())) {
-				prliRepo.delete(prli);
-				updateTotal(prli);
-				jr = JsonResponse.getInstance("Purchase Request line item deleted");
-			} else {
-				jr = JsonResponse.getInstance("Purchase request line item id: " + prli.getId() + "doesn't exist and "
-						+ "you are attempting to save it");
-			}
+			Optional<PurchaseRequestLineItem> prli = prliRepo.findById(id);
+			if (prli.isPresent()) {
+				prliRepo.deleteById(id);
+				jr = JsonResponse.getInstance(prli);
+				updateTotal(prli.orElse(null));
+			} else
+				jr = JsonResponse.getInstance("Delete failed. No user for id: " + id);
 		} catch (Exception e) {
 			jr = JsonResponse.getInstance(e);
 		}
@@ -132,13 +133,13 @@ public class PurchaseRequestLineItemController {
 	
 	
 	//Not sure if this is right?
-	@GetMapping("/lines-for-pr{id}")
+	@GetMapping("/lines-for-pr/{id}")
 	public JsonResponse getLinesForPr(@PathVariable int id) {
 		JsonResponse jr = null;
 		try {
 			Optional<PurchaseRequest> pr = prRepo.findById(id);
 			if (pr.isPresent())
-				jr = JsonResponse.getInstance(prliRepo.findByPurchaseRequest(pr));
+				jr = JsonResponse.getInstance(prliRepo.findByPurchaseRequest(pr.orElse(null)));
 			else
 				jr = JsonResponse.getInstance("No purchase request line items found for id: " + id);
 		} catch (Exception e) {

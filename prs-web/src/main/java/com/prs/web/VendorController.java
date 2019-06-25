@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.prs.business.JsonResponse;
+import com.prs.business.User;
 import com.prs.business.Vendor;
 import com.prs.db.VendorRepository;
 
@@ -93,6 +94,22 @@ public class VendorController {
 				jr = JsonResponse.getInstance("Vendor id: " + v.getId() + "doesn't exist and "
 						+ "you are attempting to save it");
 			}
+		} catch (Exception e) {
+			jr = JsonResponse.getInstance(e);
+		}
+		return jr;
+	}
+	
+	@DeleteMapping("/{id}")
+	public JsonResponse delete(@PathVariable int id) {
+		JsonResponse jr = null;
+		try {
+			Optional<Vendor> vendor = vendorRepo.findById(id);
+			if (vendor.isPresent()) {
+				vendorRepo.deleteById(id);
+				jr = JsonResponse.getInstance(vendor);
+			} else
+				jr = JsonResponse.getInstance("Delete failed. No user for id: " + id);
 		} catch (Exception e) {
 			jr = JsonResponse.getInstance(e);
 		}

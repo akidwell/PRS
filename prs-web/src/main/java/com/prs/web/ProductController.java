@@ -3,6 +3,7 @@ package com.prs.web;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,9 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.prs.business.JsonResponse;
 import com.prs.business.Product;
+import com.prs.business.PurchaseRequestLineItem;
 import com.prs.db.ProductRepository;
 
-
+@CrossOrigin
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -92,6 +94,22 @@ public class ProductController {
 				jr = JsonResponse.getInstance("Product id: " + p.getId() + "doesn't exist and "
 						+ "you are attempting to save it");
 			}
+		} catch (Exception e) {
+			jr = JsonResponse.getInstance(e);
+		}
+		return jr;
+	}
+	
+	@DeleteMapping("/{id}")
+	public JsonResponse delete(@PathVariable int id) {
+		JsonResponse jr = null;
+		try {
+			Optional<Product> product = productRepo.findById(id);
+			if (product.isPresent()) {
+				productRepo.deleteById(id);
+				jr = JsonResponse.getInstance(product);
+			} else
+				jr = JsonResponse.getInstance("Delete failed. No user for id: " + id);
 		} catch (Exception e) {
 			jr = JsonResponse.getInstance(e);
 		}

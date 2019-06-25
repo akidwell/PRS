@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,16 +16,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.prs.business.JsonResponse;
 import com.prs.business.PurchaseRequest;
-import com.prs.business.PurchaseRequestLineItem;
 import com.prs.business.User;
 import com.prs.db.PurchaseRequestRepository;
+import com.prs.db.UserRepository;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/purchase-requests")
 public class PurchaseRequestController {
 
 	@Autowired
 	private PurchaseRequestRepository prRepo;
+	
+	@Autowired
+	private UserRepository userRepo;
 
 	@GetMapping("/")
 	public JsonResponse getAll() {
@@ -53,19 +58,6 @@ public class PurchaseRequestController {
 	}
 
 	
-	//don't think i need this one anymore since i have the submit new method, which is essentially the same thing
-//	@PostMapping("/")
-//	public JsonResponse addPurchaseRequest(@RequestBody PurchaseRequest pr) {
-//		JsonResponse jr = null;
-//		// NOTE: May need to enhance exception handling if more than one exception type
-//		// needs caught
-//		try {
-//			jr = JsonResponse.getInstance(prRepo.save(pr));
-//		} catch (Exception e) {
-//			jr = JsonResponse.getInstance(e);
-//		}
-//		return jr;
-//	}
 
 	@PutMapping("/")
 	public JsonResponse updatePurchaseRequest(@RequestBody PurchaseRequest pr) {
@@ -85,24 +77,23 @@ public class PurchaseRequestController {
 		return jr;
 	}
 
-	@DeleteMapping("/")
-	public JsonResponse deletePurchaseRequest(@RequestBody PurchaseRequest pr) {
+	
+	@DeleteMapping("/{id}")
+	public JsonResponse delete(@PathVariable int id) {
 		JsonResponse jr = null;
-		// NOTE: May need to enhance exception handling if more than one exception type
-		// needs caught
 		try {
-			if (prRepo.existsById(pr.getId())) {
-				prRepo.delete(pr);
-				jr = JsonResponse.getInstance("Purchase Request deleted");
-			} else {
-				jr = JsonResponse.getInstance(
-						"Purchase request id: " + pr.getId() + "doesn't exist and " + "you are attempting to save it");
-			}
+			Optional<PurchaseRequest> pr = prRepo.findById(id);
+			if (pr.isPresent()) {
+				prRepo.deleteById(id);
+				jr = JsonResponse.getInstance(pr);
+			} else
+				jr = JsonResponse.getInstance("Delete failed. No user for id: " + id);
 		} catch (Exception e) {
 			jr = JsonResponse.getInstance(e);
 		}
 		return jr;
 	}
+	
 
 	@PostMapping("/submit-new")
 	public JsonResponse setStatusToNew(@RequestBody PurchaseRequest pr) {
@@ -138,16 +129,19 @@ public class PurchaseRequestController {
 		return jr;
 	}
 
-	@GetMapping("/list-review")
-	public JsonResponse getPRthatNeedReviewedAndNotReviewer (@RequestBody User u) {
-			JsonResponse jr = null;
-			try {
-				Iterable<PurchaseRequest> pr = prRepo.findByStatusAndUserNot("Review", u);
-					jr = JsonResponse.getInstance(pr);
-			} catch (Exception e) {
-				jr = JsonResponse.getInstance(e);
-			} return jr;
-}
+	
+	@GetMapping("list-review/{id}")
+	public JsonResponse getForReview(@PathVariable int id) {
+		JsonResponse jr = null;
+		try {
+			User u = userRepo.findById(id).get();
+			jr = JsonResponse.getInstance(prRepo.findByStatusAndUserNot("Review", u));
+		} catch (Exception e) {
+			jr = JsonResponse.getInstance(e);
+		}
+		return jr;
+	}
+	
 	
 	@PutMapping("/approve")
 	public JsonResponse setStatusToApproved(@RequestBody PurchaseRequest pr) {

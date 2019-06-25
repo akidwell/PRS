@@ -10,7 +10,6 @@ public interface PurchaseRequestLineItemRepository extends CrudRepository<Purcha
 	
 	Iterable<PurchaseRequestLineItem> findByPurchaseRequest(PurchaseRequest pr);
 
-	Object findByPurchaseRequest(Optional<PurchaseRequest> pr);
 
 
 }
