@@ -1,0 +1,48 @@
+<app-menu></app-menu>
+<div class='component content'>
+  <div class='lefthalf'>
+    <span class='component-title'> [{{title}}]</span>
+    <span><a routerLink='/pr/list'> Back to list </a>
+    </span>
+  </div>
+</div>
+
+<p *ngIf='!pr'>Loading...</p>
+<table class="table table-sm" *ngIf='pr'>
+  <tr>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Id:</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Description:</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Status:</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Total:</u></a></th>
+  </tr>
+  <tr>
+    <td>{{pr.id}}</td>
+    <td>{{pr.description}}</td>
+    <td>{{pr.status}}</td>
+    <td>{{pr.total}}</td>
+  </tr>
+</table>
+<table class="table table-sm" *ngIf='prlis'>
+  <tr>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Id:</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Product:</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Quantity:</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Price:</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Line Total:</u></a></th>
+  </tr>
+  <tr *ngFor='let prli of prlis'>
+    <td>{{prli.id}}</td>
+    <td>{{prli.product.name}}</td>
+    <td>{{prli.quantity}}</td>
+    <td>{{prli.product.price | currency}}</td>
+    <td>{{prli.quantity * prli.product.price | currency}}</td>
+  </tr>
+</table>
+
+
+<div class="form-group row">
+  <div *ngIf="pr.reasonForRejection == null || pr.reasonForRejection == ''"><button (click)='approve()' class='btn btn-primary'>Approve</button></div>
+  <div *ngIf="pr.reasonForRejection != null || pr.reasonForRejection !=''"><button (click)='reject()' class='btn btn-primary'>Reject</button></div>
+  <input [(ngModel)]='pr.reasonForRejection' name='reasonForRejection' type="text" class="form-control col-sm-6"
+    placeholder="Reason for Rejection">
+</div>

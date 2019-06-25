@@ -1,0 +1,70 @@
+<app-menu></app-menu>
+<div id='component'>
+  <div id="pagetitle">
+    <span>[{{title}}]</span>
+  </div>
+  <p *ngIf='!vendor'>Loading...</p>
+  <div *ngIf='vendor'>
+
+    <div class="form-group row">
+      <label class='col-form-label col-sm-2' for="vendorCode">Vendor Code:</label>
+      <input [(ngModel)]='vendor.code' name='Code' type="text" class="form-control col-sm-6" id="vendorCode"
+        aria-describedby="codeHelp" placeholder="Code">
+      <small id="codeHelp" class="form-text text-muted col-sm-2">Vendor code</small>
+    </div>
+    <div class="form-group row">
+      <label class='col-form-label col-sm-2' for="vendorName">Vendor Name:</label>
+      <input [(ngModel)]='vendor.name' name='Name' type="text" class="form-control col-sm-6" id="vendorName"
+        aria-describedby="nameHelp" placeholder="Vendor Name">
+      <small id="nameHelp" class="form-text text-muted col-sm-2">Vendor name</small>
+    </div>
+    <div class="form-group row">
+      <label class='col-form-label col-sm-2' for="vendorAddress">Vendor Address:</label>
+      <input [(ngModel)]='vendor.address' name='address' type="text" class="form-control col-sm-6" id="vendorAddress"
+        aria-describedby="addressHelp" placeholder="Address">
+      <small id="addressHelp" class="form-text text-muted col-sm-2">Vendor Address</small>
+    </div>
+    <div class="form-group row">
+      <label class='col-form-label col-sm-2' for="vendorCity">Vendor City:</label>
+      <input [(ngModel)]='vendor.city' name='City' type="text" class="form-control col-sm-6" id="vendorCity"
+        aria-describedby="cityHelp" placeholder="City">
+      <small id="cityHelp" class="form-text text-muted col-sm-2">Vendor city</small>
+    </div>
+    <div class="form-group row">
+      <label class='col-form-label col-sm-2' for="vendorState">Vendor State:</label>
+      <input [(ngModel)]='vendor.state' name='State' type="text" class="form-control col-sm-6" id="vendorState"
+        aria-describedby="stateHelp" placeholder="State">
+      <small id="stateHelp" class="form-text text-muted col-sm-2">Vendor state</small>
+    </div>
+    <div class="form-group row">
+      <label class='col-form-label col-sm-2' for="vendorZip">Vendor Zip:</label>
+      <input [(ngModel)]='vendor.zip' name='Zip' type="text" class="form-control col-sm-6" id="vendorZip"
+        aria-describedby="zipHelp" placeholder="Zip">
+      <small id="zipHelp" class="form-text text-muted col-sm-2">Vendor zip</small>
+    </div>
+
+    <div class="form-group row">
+        <label class='col-form-label col-sm-2' for="vendorCode">Vendor Phone Number:</label>
+        <input [(ngModel)]='vendor.phoneNumber' name='Phone Number' type="text" class="form-control col-sm-6" id="vendorPhoneNumber"
+          aria-describedby="phoneNumberHelp" placeholder="Phone Number">
+        <small id="phoneNumberHelp" class="form-text text-muted col-sm-2">Vendor Phone Number</small>
+      </div>
+
+    <div class="form-group row">
+      <label class='col-form-label col-sm-2' for="vendorCode">Vendor Email:</label>
+      <input [(ngModel)]='vendor.email' name='Email' type="text" class="form-control col-sm-6" id="vendorEmail"
+        aria-describedby="emailHelp" placeholder="Email">
+      <small id="emailHelp" class="form-text text-muted col-sm-2">Vendor email</small>
+    </div>
+  
+    <div class="form-group row">
+        <label class='col-form-label col-sm-2' for="vendorPreApproved">Pre-Approved:</label>
+        <input [(ngModel)]='vendor.preApproved' name = 'PreApproved' type="checkbox" class="form-control col-sm-6" id="vendorPreApproved" 
+        aria-describedby="preApprovedHelp" placeholder="Pre-Approved?">
+        <small id="preApprovedHelp" class="form-text text-muted col-sm-2">PreApproved?</small>
+      </div>
+    <div class='form-group'>
+      <button (click)='create()' class='btn btn-primary'>Create</button>
+    </div>
+  </div>
+</div>

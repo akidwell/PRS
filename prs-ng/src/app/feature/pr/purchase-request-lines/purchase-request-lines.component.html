@@ -1,0 +1,52 @@
+<app-menu></app-menu>
+<div class='component content'>
+  <div class='lefthalf'>
+    <span class='component-title'> [{{title}}]</span>
+    <span><a routerLink='/pr/list'> Back to list </a>
+    </span>
+  </div>
+</div>
+
+<p *ngIf='!pr'>Loading...</p>
+<table class="table table-sm" *ngIf='pr'>
+  <tr>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Id:</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Description:</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Status:</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Total:</u></a></th>
+  </tr>
+  <tr>
+    <td>{{pr.id}}</td>
+    <td>{{pr.description}}</td>
+    <td>{{pr.status}}</td>
+    <td>{{pr.total}}</td>
+  </tr>
+  <span><a routerLink='/purchase-request-line-item-create/{{pr.id}}'>
+      <img id='addlines' width='20' height='20' src='../../../../assets/add-icon.png' title='Add lines'>Add lines</a>
+  </span>
+</table>
+<table class="table table-sm" *ngIf='prlis'>
+  <tr>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Id:</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Product:</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Quantity:</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Price:</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Line Total:</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Action:</u></a></th>
+  </tr>
+  <p *ngIf="prlis.length == 0" class='text-danger font-weight-bold'>No purchase request line items</p>
+  <tr *ngFor='let prli of prlis'>
+    <td>{{prli.id}}</td>
+    <td>{{prli.product.name}}</td>
+    <td>{{prli.quantity}}</td>
+    <td>{{prli.product.price | currency}}</td>
+    <td>{{prli.quantity * prli.product.price | currency}}</td>
+
+    <td class='actions'>
+      <a (click)='remove(prli)'><img src='/assets/delete.jpg' width='20' height='20' title='Delete'></a>
+      <a routerLink='/purchase-request-line-item-edit/{{prli.id}}'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a>
+    </td>
+  </tr>
+</table>
+
+<button (click)='submitForReview()' class='btn btn-primary'>Submit For Review</button>

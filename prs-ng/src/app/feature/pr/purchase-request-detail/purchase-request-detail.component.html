@@ -1,0 +1,45 @@
+<app-menu></app-menu>
+<div class='component-content'>
+		<div class = 'lefthalf'>
+			<span class='component-title'>[{{title}}]</span>
+	</div>
+  <table class="table table-sm" *ngIf='pr'>
+    <tr>
+      <td>Purchase Request Id:</td><td>{{ pr.id}}</td>
+    </tr>
+    <tr>
+      <td>Purchase Request User:<td>{{ pr.user.userName }}</td>
+    </tr>
+    <tr>
+      <td>Purchase Request Description:</td><td>{{ pr.description }}</td>
+    </tr>
+    <tr>
+      <td>Purchase Request Justification:</td><td>{{ pr.justification}}</td>
+    </tr>
+    <tr>
+      <td>Purchase Request Date Needed:</td><td>{{ pr.dateNeeded }}</td>
+    </tr>
+    <tr>
+      <td>Purchase Request Delivery Mode:</td><td>{{ pr.deliveryMode}}</td>
+    </tr>
+    <tr>
+      <td>Purchase Request Status:</td><td>{{ pr.status}}</td>
+    </tr>
+    <tr>
+        <td>Purchase Request Total:</td><td>{{ pr.total | currency}}</td>
+      </tr>
+      <tr>
+          <td>Purchase Request Submitted Date:</td><td>{{ pr.submittedDate}}</td>
+        </tr>
+        <tr>
+            <td>Purchase Request Reason for Rejection:</td><td>{{ pr.reasonForRejection}}</td>
+          </tr>
+
+    <tr>
+	    <td colspan="2">
+	      <a routerLink='/purchase-request/edit/{{pr.id}}' class='btn btn-primary' title='Edit'>Edit</a>
+	      <button (click)="remove()" class='btn btn-danger' title='Delete'>Remove</button>
+	    </td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,45 @@
+<app-menu></app-menu>
+<div id='component'>
+    <div id = "pagetitle">
+    <span>[{{title}}]</span>
+    </div>
+    <p *ngIf='!pr'>Loading...</p>
+    <div *ngIf='pr'>
+        <div class='form-group row' >
+            <label class='col-form-label col-sm-2' for="pruser">User:</label>
+            <input [(ngModel)]='pr.user.userName' name='Name' type="text" class="form-control col-sm-6" id="pruser" aria-describedby="usrHelp" placeholder="UserName" disabled>
+              <small id="usrHelp" class="form-text text-muted col-sm-2">The UserName</small>
+          </div>
+       <div class="form-group row">
+        <label class='col-form-label col-sm-2' for="prDescription">Description:</label>
+        <input [(ngModel)]='pr.description' name = 'description' type="text" class="form-control col-sm-6" 
+        id="Description" aria-describedby="descriptionHelp" placeholder="Purchase Request Description">
+        <small id="descriptionHelp" class="form-text text-muted col-sm-2">Purchase Request Description</small>
+      </div>
+      <div class="form-group row">
+          <label class='col-form-label col-sm-2' for="prJustification">Justification:</label>
+          <input [(ngModel)]='pr.justification' name = 'justification' type="text" class="form-control col-sm-6" 
+          id="justification" aria-describedby="justificationHelp" placeholder="Purchase Request Justification">
+          <small id="justificationnHelp" class="form-text text-muted col-sm-2">Purchase Request Justification</small>
+        </div>
+        <div class="form-group row">
+            <label class='col-form-label col-sm-2' for="prDateNeeded">Date Needed:</label>
+            <input [(ngModel)]='pr.dateNeeded' name = 'dateNeeded' type="date" class="form-control col-sm-6" 
+            id="dateNeeded" aria-describedby="dateNeededHelp" placeholder="Purchase Request Date Needed">
+            <small id="descriptionHelp" class="form-text text-muted col-sm-2">Purchase Request Date Needed</small>
+          </div>
+                    <div class='form-group row' >
+                <label class='col-form-label col-sm-2' for="vendor">Delivery Mode:</label>
+              <div class=' col-sm-6'>
+                <select [(ngModel)]='pr.deliveryMode' class='form-control' name='deliveryMode' id='deliveryMode'>
+                  <option value="option-1">Pickup</option>
+                  <option value="option-2">Dropoff</option>
+                </select>
+              </div>
+            </div>
+            
+      <div class='form-group'>
+        <button (click)='create()' class='btn btn-primary'>Create</button>
+      </div>
+    </div>
+  </div>

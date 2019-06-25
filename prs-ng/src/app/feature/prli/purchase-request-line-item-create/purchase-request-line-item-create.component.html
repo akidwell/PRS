@@ -1,0 +1,28 @@
+<app-menu></app-menu>
+<div id='component'>
+  <div id = "pagetitle">
+  <span>[{{title}}]</span>
+  <span><a routerLink='/pr/list'> Back to list </a> </span> 
+<p *ngIf='!prli'>Loading...</p>
+  <div *ngIf='prli'>
+
+      <div class='form-group row' >
+          <label class='col-form-label col-sm-2' for="vendor">Product:</label>
+        <div class=' col-sm-6'>
+          <select [(ngModel)]='prli.product' class='form-control' name='product' id='product'>
+            <option *ngFor="let product of products" [ngValue]="product">{{product.name}}</option>
+          </select>
+        </div>
+      </div>
+    <div class="form-group row">
+      <label class='col-form-label col-sm-2' for="productpartNumber">Quantity:</label>
+      <input [(ngModel)]='prli.quantity' name = 'quantity' type="number" class="form-control col-sm-6" 
+      id="prliQuantity" aria-describedby="quantityHelp" placeholder="Quantity">
+      <small id="quantityHelp" class="form-text text-muted col-sm-2">Product Quantity</small>
+    </div>
+    <div class='form-group'>
+      <button (click)='create()' class='btn btn-primary'>Create</button>
+    </div>
+  </div>
+</div>
+
