@@ -1,6 +1,5 @@
 <nav><ul>
   <li *ngFor = 'let mi of menuItems' title = "{{mi.tooltip}}">
   <a routerLink ="{{mi.href}}">{{mi.display}}</a></li>
-    <!-- <a class="navbar-brand" href="#" style="padding: 4px;margin:auto" > 
-      <img src="../../../assets/bitmoji.jpeg" style="height:100%;width: auto;" title="Welcome"> Welcome!</a> -->
+    <div>{{loggedInUser.userName}}<br>{{loggedInUser.reviewer? "Reviewer " : ""}}{{loggedInUser.admin? "Admin" : ""}}</div>
   </ul></nav>

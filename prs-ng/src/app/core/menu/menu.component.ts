@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from '@model/menu-item.class';
+import { SystemService } from '@svc/system.service';
+import { Router } from '@angular/router';
+import { UseExistingWebDriver } from 'protractor/built/driverProviders';
+import { User } from '@model/user.class';
 
 @Component({
   selector: 'app-menu',
@@ -17,10 +21,14 @@ export class MenuComponent implements OnInit {
   new MenuItem("Login","/user/login","This is the login menu item"),
   new MenuItem("About","/about","This is the about menu item")
   ];
+  loggedInUser: User;
 
-  constructor() { }
+  constructor(private sysSvc: SystemService,
+              private router: Router) { }
 
-  ngOnInit() {
+  ngOnInit()   {
+    this.sysSvc.data.user.loggedIn;
+    this.loggedInUser = this.sysSvc.data.user.instance;
+  }
   }
 
-}
