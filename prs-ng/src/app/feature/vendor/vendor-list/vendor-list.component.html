@@ -11,13 +11,14 @@
 <p *ngIf= '!vendors'>Loading...</p>
 <table class = "table table-sm" *ngIf = 'vendors'>
 <tr>
-    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Id</u></a></th>
-    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Code</u></a></th>
-    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Name</u></a></th>
-    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Address</u></a></th>
-    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Phone</u></a></th>
-    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Email</u></a></th>
-    <th class="table-secondary btn-link">Pre-Approved</th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Id;</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Code:</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Name:</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Address:</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Phone:</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Email:</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Pre-approved:</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Action:</u></a></th>
     </tr>
     <tr *ngFor = 'let vendor of vendors'>
       <td>{{vendor.id}}</td>

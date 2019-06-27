@@ -11,13 +11,13 @@
 <p *ngIf= '!users'>Loading...</p>
 <table class = "table table-sm" *ngIf = 'users'>
 <tr>
-    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Id</u></a></th>
-    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>User Name</u></a></th>
-    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Address</u></a></th>
-    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Phone</u></a></th>
-    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Email</u></a></th>
-    <th class="table-secondary btn-link">Privilege</th>
-    <th class="table-secondary btn-link">Action</th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Id:</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>User Name:</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Address:</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Phone:</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Email:</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Privlege:</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Action:</u></a></th>
     </tr>
     <tr *ngFor = 'let user of users'>
       <td>{{user.id}}</td>

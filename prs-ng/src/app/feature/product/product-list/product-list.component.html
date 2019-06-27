@@ -11,12 +11,13 @@
 <p *ngIf= '!products'>Loading...</p>
 <table class = "table table-sm" *ngIf = 'products'>
 <tr>
-    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" (click)="sortBy('id')"><u>Id</u></a></th>
-    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Vendor</u></a></th>
-    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"(click)="sortBy('partNumber')"><u>Part Number</u></a></th>
-    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" (click)="sortBy('name')"><u>Name</u></a></th>
-    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"(click)="sortBy('price')"><u>Price</u></a></th>
-    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"(click)="sortBy('unit')"><u>Unit</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" (click)="sortBy('id')"><u>Id:</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Vendor:</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"(click)="sortBy('partNumber')"><u>Part Number:</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" (click)="sortBy('name')"><u>Name:</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"(click)="sortBy('price')"><u>Price:</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"(click)="sortBy('unit')"><u>Unit:</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Action:</u></a></th>
    
     </tr>
     <tr *ngFor='let product of products | sort:sortCriteria:sortOrder'>
@@ -26,7 +27,6 @@
       <td>{{product.name}}</td>
       <td>{{product.price | currency}}</td>
       <td>{{product.unit}}</td>
-      <td>{{product.photoPath}}</td>
       <td class='actions'>
           <a routerLink='/product/detail/{{product.id}}'><img src='assets/details.png' width='20' height='20' title='Detail'></a>
           <a routerLink='/product/edit/{{product.id}}'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a>
