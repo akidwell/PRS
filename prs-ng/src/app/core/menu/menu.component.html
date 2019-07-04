@@ -2,4 +2,10 @@
   <li *ngFor = 'let mi of menuItems' title = "{{mi.tooltip}}">
   <a routerLink ="{{mi.href}}">{{mi.display}}</a></li>
     <div>{{loggedInUser.userName}}<br>{{loggedInUser.reviewer? "Reviewer " : ""}}{{loggedInUser.admin? "Admin" : ""}}</div>
-  </ul></nav>
+  </ul>
+
+<div class="col my-auto">
+  <button class="btn btn-danger float-right" (click)="logout()">Logout</button>
+  <div class="float-right user">{{loggedInUser.firstName}} {{loggedInUser.lastName}}</div>
+
+

@@ -48,5 +48,6 @@
     </td>
   </tr>
 </table>
-
+<div *ngIf="prlis.length!=0 && pr.status != 'approved'" class='form-group'>
 <button (click)='submitForReview()' class='btn btn-primary'>Submit For Review</button>
+</div>
